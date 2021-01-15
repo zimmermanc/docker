@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  proxy:
+    build: ./proxy
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - network2
+      - network1
+    hostname: proxy
+  web:
+    build: ./web
+    networks:
+      - network1
+    hostname: web
+
+
+networks:
+  network1:
+    internal: true
+  network2:
+    internal: false
